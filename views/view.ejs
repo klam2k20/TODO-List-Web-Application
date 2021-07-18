@@ -1,25 +1,28 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do  List</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>To Do List</title>
+  </head>
 
-<body>
+  <body>
+    <h1 class="box" id="heading"><%= dateObj %></h1>
 
-    <h1> <%= dateObj %> </h1>
-    
-    <ul>
-        <% for (var i = 0; i < items.length; i++) { %>
-            <li> <%= items[i] %></li>
-        <% } %>
-    </ul>
+    <div class="box">
+      <% for (var i = 0; i < items.length; i++) { %>
+      <div class="item">
+        <input type="checkbox" />
+        <p><%= items[i] %></p>
+      </div>
 
-    <form action="/" method="POST"> 
-        <input type="text" name="newItem">
-        <button type="submit" name="button">Add</button>
-    </form>
-</body>
+      <% } %>
 
+      <form action="/" method="POST">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off"/>
+        <button type="submit" name="button">+</button>
+      </form>
+    </div>
+  </body>
 </html>

@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 app.use(express.urlencoded());
+app.use(express.static("public"));
 
 // Sets ejs as the template engine
 // The view engine will default look into the
@@ -9,7 +10,7 @@ app.use(express.urlencoded());
 app.set("view engine", "ejs");
 
 
-let items = ["Gym: Back Day", "Grab hashbrowns",  "Cook Dinner"];
+let items = ["Gym"];
 
 app.get("/", function(req, res) {
     let date  = new Date();
