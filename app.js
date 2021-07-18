@@ -9,16 +9,16 @@ app.use(express.urlencoded());
 app.set("view engine", "ejs");
 
 
-var items = ["Gym: Back Day", "Grab hashbrowns",  "Cook Dinner"];
+let items = ["Gym: Back Day", "Grab hashbrowns",  "Cook Dinner"];
 
 app.get("/", function(req, res) {
-    var date  = new Date();
-    var options = {
+    let date  = new Date();
+    let options = {
         weekday : "long",
         month : "long",
         day : "numeric" 
     }
-    var dateObj = date.toLocaleDateString("en-US", options);
+    let dateObj = date.toLocaleDateString("en-US", options);
     
 
     // Will render the view.ejs file in the views 
@@ -28,8 +28,9 @@ app.get("/", function(req, res) {
     res.render("view", {dateObj: dateObj, items: items});
 });
 
+
 app.post("/", function(req, res) {
-    var item = req.body.newItem;
+    let item = req.body.newItem;
     items.push(item);
     res.redirect("/");
 });
