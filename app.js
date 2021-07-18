@@ -1,4 +1,5 @@
 const express = require("express");
+const date = require(__dirname + "/date.js");
 const app = express();
 app.use(express.urlencoded());
 app.use(express.static("public"));
@@ -9,17 +10,14 @@ app.use(express.static("public"));
 // want to render
 app.set("view engine", "ejs");
 
-
-let items = ["Gym"];
+// const arrays can still have
+// items pushed to it 
+// Can't assign the array a whole
+// new value though
+const items = ["Gym"];
 
 app.get("/", function(req, res) {
-    let date  = new Date();
-    let options = {
-        weekday : "long",
-        month : "long",
-        day : "numeric" 
-    }
-    let dateObj = date.toLocaleDateString("en-US", options);
+    const dateObj = date.getDate();
     
 
     // Will render the view.ejs file in the views 
@@ -29,9 +27,8 @@ app.get("/", function(req, res) {
     res.render("view", {dateObj: dateObj, items: items});
 });
 
-
 app.post("/", function(req, res) {
-    let item = req.body.newItem;
+    const item = req.body.newItem;
     items.push(item);
     res.redirect("/");
 });
