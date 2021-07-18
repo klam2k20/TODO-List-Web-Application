@@ -7,7 +7,19 @@
 </head>
 
 <body>
-    <h1>It's a <%= dayString %>!</h1>
+
+    <h1> <%= dateObj %> </h1>
+    
+    <ul>
+        <% for (var i = 0; i < items.length; i++) { %>
+            <li> <%= items[i] %></li>
+        <% } %>
+    </ul>
+
+    <form action="/" method="POST"> 
+        <input type="text" name="newItem">
+        <button type="submit" name="button">Add</button>
+    </form>
 </body>
 
 </html>

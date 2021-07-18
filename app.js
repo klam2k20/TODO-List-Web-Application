@@ -8,44 +8,30 @@ app.use(express.urlencoded());
 // want to render
 app.set("view engine", "ejs");
 
+
+var items = ["Gym: Back Day", "Grab hashbrowns",  "Cook Dinner"];
+
 app.get("/", function(req, res) {
     var date  = new Date();
-    var dayInt = date.getDay();
-    var dayString = "";
-
-    switch (dayInt) {
-        case 0:
-            dayString = "Sunday";
-            break;
-        case 1:
-            dayString = "Monday";
-            break;
-        case 2:
-            dayString = "Tuesday";
-            break;
-        case 3:
-            dayString = "Wednesday";
-            break;
-        case 4:
-            dayString = "Thursday";
-            break;
-        case 5:
-            dayString = "Friday";
-            break;
-        case 6:
-            dayString = "Saturday";
-            break;
-        default:
-            console.log("What happenned here!!");
-
-
+    var options = {
+        weekday : "long",
+        month : "long",
+        day : "numeric" 
     }
+    var dateObj = date.toLocaleDateString("en-US", options);
+    
 
     // Will render the view.ejs file in the views 
     // directory and replace any variables within 
     // the file with the values in the javascript
     // object
-    res.render("view", {dayString: dayString});
+    res.render("view", {dateObj: dateObj, items: items});
+});
+
+app.post("/", function(req, res) {
+    var item = req.body.newItem;
+    items.push(item);
+    res.redirect("/");
 });
 
 app.listen(3000, function() {
